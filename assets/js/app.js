@@ -26,6 +26,12 @@ area.addEventListener('mousedown', e => {
   y = e.offsetY;
   isDrawing = true;
 });
+// JS-Code for Media Query
+area.addEventListener('touchstart', e => {
+  x = e.offsetX;
+  y = e.offsetY;
+  isDrawing = true;
+});
 
 area.addEventListener('mousemove', e => {
   if (isDrawing === true) {
@@ -34,8 +40,25 @@ area.addEventListener('mousemove', e => {
     y = e.offsetY;
   }
 });
+// JS-Code for Media Query
+area.addEventListener('touchmove', e => {
+  if (isDrawing === true) {
+    drawLine(context, x, y, e.offsetX, e.offsetY);
+    x = e.offsetX;
+    y = e.offsetY;
+  }
+});
 
 window.addEventListener('mouseup', e => {
+  if (isDrawing === true) {
+    drawLine(context, x, y, e.offsetX, e.offsetY);
+    x = 0;
+    y = 0;
+    isDrawing = false;
+  }
+});
+// JS-Code for Media Query
+window.addEventListener('touchend', e => {
   if (isDrawing === true) {
     drawLine(context, x, y, e.offsetX, e.offsetY);
     x = 0;
