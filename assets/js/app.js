@@ -26,12 +26,7 @@ area.addEventListener('mousedown', e => {
   y = e.offsetY;
   isDrawing = true;
 });
-// JS-Code for Media Query
-area.addEventListener('touchstart', e => {
-  x = e.offsetX;
-  y = e.offsetY;
-  isDrawing = true;
-});
+
 
 area.addEventListener('mousemove', e => {
   if (isDrawing === true) {
@@ -40,14 +35,7 @@ area.addEventListener('mousemove', e => {
     y = e.offsetY;
   }
 });
-// JS-Code for Media Query
-area.addEventListener('touchmove', e => {
-  if (isDrawing === true) {
-    drawLine(context, x, y, e.offsetX, e.offsetY);
-    x = e.offsetX;
-    y = e.offsetY;
-  }
-});
+
 
 window.addEventListener('mouseup', e => {
   if (isDrawing === true) {
@@ -57,15 +45,7 @@ window.addEventListener('mouseup', e => {
     isDrawing = false;
   }
 });
-// JS-Code for Media Query
-window.addEventListener('touchend', e => {
-  if (isDrawing === true) {
-    drawLine(context, x, y, e.offsetX, e.offsetY);
-    x = 0;
-    y = 0;
-    isDrawing = false;
-  }
-});
+
 
 function drawLine(context, x1, y1, x2, y2) {
   context.beginPath();
@@ -81,3 +61,36 @@ document.getElementById('clear').addEventListener('click', (clearCanvas) => {
   context.clearRect(0, 0, area.width, area.height);
   console.log("clean?!")
 });
+
+/* Some help from https://bencentra.com/ for Mobile drawing: BEN CENTRA == CREDITS === to him */
+// Set up touch events for mobile, etc
+area.addEventListener("touchstart", function (e) {
+  mousePos = getTouchPos(area, e);
+var touch = e.touches[0];
+var mouseEvent = new MouseEvent("mousedown", {
+clientX: touch.clientX,
+clientY: touch.clientY
+});
+
+
+area.dispatchEvent(mouseEvent);
+}, false);
+
+area.addEventListener("touchend", function (e) {
+var mouseEvent = new MouseEvent("mouseup", {});
+area.dispatchEvent(mouseEvent);
+}, false);
+
+
+area.addEventListener("touchmove", function (e) {
+var touch = e.touches[0];
+var mouseEvent = new MouseEvent("mousemove", {
+clientX: touch.clientX,
+clientY: touch.clientY
+});
+
+
+area.dispatchEvent(mouseEvent);
+}, false);
+
+/* Some help from https://bencentra.com/ == CREDITS === to him */
