@@ -61,36 +61,3 @@ document.getElementById('clear').addEventListener('click', (clearCanvas) => {
   context.clearRect(0, 0, area.width, area.height);
   console.log("clean?!")
 });
-
-/* Some help from https://bencentra.com/ for Mobile drawing: BEN CENTRA == CREDITS === to him */
-// Set up touch events for mobile, etc
-area.addEventListener("touchstart", function (e) {
-  mousePos = getTouchPos(area, e);
-var touch = e.touches[0];
-var mouseEvent = new MouseEvent("mousedown", {
-clientX: touch.clientX,
-clientY: touch.clientY
-});
-
-
-area.dispatchEvent(mouseEvent);
-}, false);
-
-area.addEventListener("touchend", function (e) {
-var mouseEvent = new MouseEvent("mouseup", {});
-area.dispatchEvent(mouseEvent);
-}, false);
-
-
-area.addEventListener("touchmove", function (e) {
-var touch = e.touches[0];
-var mouseEvent = new MouseEvent("mousemove", {
-clientX: touch.clientX,
-clientY: touch.clientY
-});
-
-
-area.dispatchEvent(mouseEvent);
-}, false);
-
-/* Some help from https://bencentra.com/ == CREDITS === to him */
