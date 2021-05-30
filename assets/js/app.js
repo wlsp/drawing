@@ -1,27 +1,25 @@
-// When true, moving the mouse draws on the canvas
 let isDrawing = false;
 let x = 0;
 let y = 0;
-let colors = ["blue"];
-const randomColor = () => Math.floor(Math.random() * 255)
-
-
-document.getElementById('test').addEventListener('click', (event) => {
-    event.target.style.background = `rgb(${randomColor()},${randomColor()},${randomColor()})`
-    event.target.style.transition = "all .8s";
-    console.log(test)
-})
-
-document.getElementById('test').addEventListener('click', (event) => {
-    if (event.target.id === 'test') {
-        colors.shift(event.target.style.background)
-    }
- })
-
-
-
+let colors = [" "];
+const randomColor = () => Math.floor(Math.random() * 256)
 const area = document.getElementById('area');
 const context = area.getContext('2d');
+
+
+document.getElementById('test').addEventListener('click', (event) => {
+  event.target.style.background = `rgb(${randomColor()},${randomColor()},${randomColor()})`
+  event.target.style.transition = "all .8s";
+});
+
+document.getElementById('test').addEventListener('click', (event) => {
+  if (event.target.id === 'test') {
+    colors[0] = test.style.background
+    console.log(colors)
+    console.log(test.style.background)
+  }
+});
+
 
 area.addEventListener('mousedown', e => {
   x = e.offsetX;
@@ -55,3 +53,8 @@ function drawLine(context, x1, y1, x2, y2) {
   context.stroke();
   context.closePath();
 }
+
+document.getElementById('clear').addEventListener('click', (clearCanvas) => {
+  context.clearRect(0, 0, area.width, area.height);
+  console.log("clean?!")
+});
